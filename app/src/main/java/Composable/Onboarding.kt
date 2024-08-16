@@ -48,13 +48,7 @@ fun OnboardingScreen(navController: NavHostController) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         // Header with logo
-        Image(
-            painter = painterResource(id = R.drawable.logo),
-            contentDescription = "Logo",
-            modifier = Modifier
-                .padding(top = 32.dp, bottom = 16.dp)
-                .size(150.dp) // Increase size
-        )
+        TopAppBar()
 
         // Centered Header
         Box(

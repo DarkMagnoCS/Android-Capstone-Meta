@@ -28,4 +28,5 @@ val Typography = Typography (
         fontSize = 14.sp,
         fontWeight = FontWeight.Bold
     )
+
 )
