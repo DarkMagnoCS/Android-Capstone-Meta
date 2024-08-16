@@ -6,16 +6,15 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.littlelemon.R
-import com.example.littlelemon.ui.theme.GreenMain
-import com.example.littlelemon.ui.theme.HighlightLight
-import com.example.littlelemon.ui.theme.LittleLemonTheme
-import com.example.littlelemon.ui.theme.YellowMain
+import com.learning.littlelemon.ui.theme.GreenMain
+import com.learning.littlelemon.ui.theme.LittleLemonTheme
 
 @Composable
 fun Onboarding(innerPadding: PaddingValues, navHostController: NavHostController) {
@@ -25,6 +24,7 @@ fun Onboarding(innerPadding: PaddingValues, navHostController: NavHostController
         }
     }
 }
+
 @Composable
 fun OnboardingScreen() {
     Column(
@@ -37,26 +37,34 @@ fun OnboardingScreen() {
         Image(
             painter = painterResource(id = R.drawable.logo),
             contentDescription = "Logo",
-            modifier = Modifier.padding(top = 16.dp, bottom = 32.dp)
-        )
-        Box (
             modifier = Modifier
-
-                .height(100.dp)
-                .background(color = GreenMain)
+                .padding(top = 32.dp, bottom = 16.dp)
+                .size(150.dp) // Increase size
         )
-        {
+
+        // Centered Header
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(color = GreenMain)
+                .padding(vertical = 16.dp)
+        ) {
             Text(
                 text = "Let's get to know you",
-                color = HighlightLight,
+                color = MaterialTheme.colorScheme.onPrimary,
                 style = MaterialTheme.typography.titleMedium,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(25.dp)
-                    .align(Alignment.Center)
+                modifier = Modifier.align(Alignment.Center)
             )
         }
 
+        // Personal Information Title
+        Text(
+            text = "Personal information",
+            style = MaterialTheme.typography.titleMedium,
+            modifier = Modifier
+                .padding(vertical = 16.dp)
+                .align(Alignment.Start)
+        )
 
         // First Name Input
         var firstName by remember { mutableStateOf("") }
@@ -64,7 +72,9 @@ fun OnboardingScreen() {
             value = firstName,
             onValueChange = { firstName = it },
             label = { Text("First name") },
-            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 16.dp)
         )
 
         // Last Name Input
@@ -73,7 +83,9 @@ fun OnboardingScreen() {
             value = lastName,
             onValueChange = { lastName = it },
             label = { Text("Last name") },
-            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 16.dp)
         )
 
         // Email Input
@@ -82,7 +94,9 @@ fun OnboardingScreen() {
             value = email,
             onValueChange = { email = it },
             label = { Text("Email") },
-            modifier = Modifier.fillMaxWidth().padding(bottom = 32.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 32.dp)
         )
 
         // Register Button
@@ -90,8 +104,11 @@ fun OnboardingScreen() {
             onClick = { /* Handle registration logic */ },
             modifier = Modifier
                 .fillMaxWidth()
+
         ) {
-            Text("Register")
+            Text("Register",
+                color = MaterialTheme.colorScheme.onSecondary,
+                style = MaterialTheme.typography.titleMedium)
         }
     }
 }
