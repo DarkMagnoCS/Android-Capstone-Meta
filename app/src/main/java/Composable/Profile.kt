@@ -1,7 +1,6 @@
 import Composable.Onboarding
 import Composable.TopAppBar
 import android.content.Context
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
@@ -12,7 +11,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.learning.littlelemon.ui.theme.GreenMain
 import androidx.navigation.NavHostController
 
 @Composable
@@ -26,22 +24,24 @@ fun ProfileScreen(navController: NavHostController) {
     Column(
         modifier = androidx.compose.ui.Modifier
             .fillMaxWidth()
-            .fillMaxHeight()
-            .background(color = GreenMain),
+            .fillMaxHeight(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceBetween
     ) {
+        // TopAppBar at the top
+        TopAppBar()
+
+        // User information
         Column(
             modifier = androidx.compose.ui.Modifier
                 .fillMaxWidth()
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            TopAppBar()
             Text(
-                text = "Profile Screen",
+                text = "Profile Information",
                 fontSize = 24.sp,
-                color = Color.White,
+                color = Color.Black,
                 fontWeight = FontWeight.Bold,
                 modifier = androidx.compose.ui.Modifier.padding(top = 16.dp)
             )
@@ -49,23 +49,24 @@ fun ProfileScreen(navController: NavHostController) {
             Text(
                 text = "First Name: $firstName",
                 fontSize = 20.sp,
-                color = Color.White,
+                color = Color.Black,
                 modifier = androidx.compose.ui.Modifier.padding(top = 8.dp)
             )
             Text(
                 text = "Last Name: $lastName",
                 fontSize = 20.sp,
-                color = Color.White,
+                color = Color.Black,
                 modifier = androidx.compose.ui.Modifier.padding(top = 8.dp)
             )
             Text(
                 text = "Email: $email",
                 fontSize = 20.sp,
-                color = Color.White,
+                color = Color.Black,
                 modifier = androidx.compose.ui.Modifier.padding(top = 8.dp)
             )
         }
 
+        // Log Out button at the bottom
         Button(
             onClick = {
                 // Clear the stored user data

@@ -28,45 +28,20 @@ import com.example.littlelemon.R
 
 @Composable
 fun DishDetails(id: Int) {
-    val dish = requireNotNull(DishRepository.getDish(id))
-    Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-        TopAppBar()
-        Image(
-            painter = painterResource(id = dish.imageResource),
-            contentDescription = "Dish image",
-            modifier = Modifier.fillMaxWidth(),
-            contentScale = ContentScale.FillWidth
-        )
-        Column(
-            verticalArrangement = Arrangement.spacedBy(10.dp),
-            modifier = Modifier.padding(
-                start = 10.dp,
-                end = 10.dp
+    val dish = DishRepository.getDish(id)
+    dish?.let {
+        Column {
+            Text(text = it.name)
+            Text(text = it.description)
+            Text(text = "$${it.price}")
+            Image(
+                painter = painterResource(id = it.imageResource),
+                contentDescription = it.name
             )
-        ) {
-            Text(
-                text = dish.name,
-                style = MaterialTheme.typography.titleMedium
-            )
-            Text(
-                text = dish.description,
-                style = MaterialTheme.typography.bodyMedium
-            )
-            Counter()
-            Button(
-                onClick = { /*TODO*/ }
-            ) {
-                Text(
-                    text = stringResource(id = R.string.add_for) + " $${dish.price}",
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .align(Alignment.CenterVertically)
-                )
-            }
         }
     }
 }
+
 
 @Composable
 fun Counter() {

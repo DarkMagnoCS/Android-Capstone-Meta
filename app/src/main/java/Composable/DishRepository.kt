@@ -1,17 +1,16 @@
 package Composable
 
 import androidx.annotation.DrawableRes
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.painterResource
 import com.example.littlelemon.R
 
 object DishRepository {
     val dishes = listOf(
-        Dish(
-            1,
-            "Greek Salad",
-            "The famous greek salad of crispy lettuce, peppers, olives, our Chicago.",
-            12.99,
-            R.drawable.greeksalad
-        ),
+
         Dish(
             2,
             "Lemon Desert",
@@ -36,20 +35,20 @@ object DishRepository {
         Dish(
             5,
             "Pasta",
-            "Penne with fried aubergines, cherry tomatoes, tomato sauce, fresh chilli, garlic, basil & salted ricotta cheese.",
+            "Penne with fried aubergines, cherry tomatoes, tomato sauce, fresh chili, garlic, basil & salted ricotta cheese.",
             8.99,
             R.drawable.pasta
         ),
         Dish(
             6,
             "Lasagne",
-            "Oven-baked layers of pasta stuffed with Bolognese sauce, béchamel sauce, ham, Parmesan & mozzarella cheese .",
+            "Oven-baked layers of pasta stuffed with Bolognese sauce, béchamel sauce, ham, Parmesan & mozzarella cheese.",
             7.99,
             R.drawable.lasagne
         )
     )
 
-    fun getDish(id: Int) = dishes.firstOrNull { it.id == id }
+    fun getDish(id: Int): Dish? = dishes.firstOrNull { it.id == id }
 }
 
 data class Dish(
@@ -59,3 +58,26 @@ data class Dish(
     val price: Double,
     @DrawableRes val imageResource: Int
 )
+
+@Composable
+fun MenuItems() {
+    val dishes = DishRepository.dishes
+    Column {
+        dishes.forEach { dish ->
+            DishItem(dish)
+        }
+    }
+}
+
+@Composable
+fun DishItem(dish: Dish) {
+    Column {
+        Text(text = dish.name)
+        Text(text = dish.description)
+        Text(text = "$${dish.price}")
+        Image(
+            painter = painterResource(id = dish.imageResource),
+            contentDescription = dish.name
+        )
+    }
+}
