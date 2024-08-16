@@ -22,6 +22,8 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -57,22 +59,18 @@ import com.learning.littlelemon.ui.theme.YellowMain
 
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController: NavHostController) {
     LittleLemonTheme {
         Column() {
             TopAppBar()
-            HeroBanner()
+            HeroBanner(navController = navController)
         }
     }
 }
 
 @Composable
-fun HeroBanner() {
-    var searchPhrase by remember { mutableStateOf("") }
-
+fun HeroBanner(navController: NavHostController) {
     LittleLemonTheme {
-        val focusManager = LocalFocusManager.current
-
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -110,36 +108,26 @@ fun HeroBanner() {
                         .clip(RoundedCornerShape(10.dp))
                 )
             }
-            TextField(
+
+            // Replace the TextField with a Button
+            Button(
+                onClick = { navController.navigate("profile") },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(75.dp)
                     .padding(10.dp)
                     .clip(RoundedCornerShape(10.dp)),
-                value = searchPhrase,
-                singleLine = true,
-                placeholder = {
-                    Text(
-                        text = "Reserve a table",
-                        color = HighlightDark,
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                },
-                onValueChange = {
-                    searchPhrase = it
-                    },
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
-                keyboardActions = KeyboardActions(onDone = {
-                    focusManager.clearFocus()
-                }),
-                leadingIcon = {
-                    Icon(
-                        imageVector = Icons.Filled.Search,
-                        contentDescription = "Search Icon"
-                    )
-                },
-            )
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = HighlightDark
+                )
+            ) {
+                Text(
+                    text = "Reserve a table",
+                    color = Color.White,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            }
         }
     }
 }
