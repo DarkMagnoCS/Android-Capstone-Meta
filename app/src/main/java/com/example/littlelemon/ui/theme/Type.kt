@@ -1,45 +1,31 @@
-package com.learning.littlelemon.ui.theme
+package com.example.littlelemon.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.learning.littlelemon.ui.theme.LittleLemonColor
 
-val Typography = Typography(
+val Typography = Typography (
     titleLarge = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 24.sp,
-        lineHeight = 30.sp,
-        letterSpacing = 0.sp
-    ),
-    bodyLarge = TextStyle(
-        fontFamily = FontFamily.Default,
+        fontSize = 26.sp,
         fontWeight = FontWeight.Bold,
-        fontSize = 22.sp,
-        lineHeight = 26.sp,
-        letterSpacing = 0.5.sp
+        color = LittleLemonColor.charcoal
     ),
-    labelSmall = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Medium,
-        fontSize = 11.sp,
-        lineHeight = 16.sp,
-        letterSpacing = 0.5.sp
+    titleMedium = TextStyle(
+        color = LittleLemonColor.charcoal,
+        fontSize = 18.sp,
+        fontWeight = FontWeight.Bold
     ),
-    headlineLarge = TextStyle(
-        fontFamily = FontFamily.Serif,
+     displayMedium = TextStyle(
+        color = LittleLemonColor.green
+     ),
+     bodyMedium =  TextStyle(
         fontWeight = FontWeight.Bold,
-        fontSize = 36.sp,
-        lineHeight = 30.sp,
-        letterSpacing = 0.sp
+        color = LittleLemonColor.green
     ),
-    headlineMedium = TextStyle(
-        fontFamily = FontFamily.Serif,
-        fontWeight = FontWeight.Normal,
-        fontSize = 28.sp,
-        lineHeight = 30.sp,
-        letterSpacing = 0.sp
-    ),
+     labelMedium =  TextStyle(
+        fontSize = 14.sp,
+        fontWeight = FontWeight.Bold
+    )
 )

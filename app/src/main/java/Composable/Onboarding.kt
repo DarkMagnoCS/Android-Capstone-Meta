@@ -15,6 +15,14 @@ import androidx.navigation.NavHostController
 import com.example.littlelemon.R
 import com.learning.littlelemon.ui.theme.GreenMain
 import com.learning.littlelemon.ui.theme.LittleLemonTheme
+import android.content.Context
+import android.widget.Toast
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.rememberNavController
 
 @Composable
 fun Onboarding(innerPadding: PaddingValues, navHostController: NavHostController) {
@@ -26,7 +34,13 @@ fun Onboarding(innerPadding: PaddingValues, navHostController: NavHostController
 }
 
 @Composable
-fun OnboardingScreen() {
+fun OnboardingScreen(navController: NavHostController) {
+    var firstName by remember { mutableStateOf("") }
+    var lastName by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
+
+    val context = LocalContext.current
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -99,22 +113,38 @@ fun OnboardingScreen() {
                 .padding(bottom = 32.dp)
         )
 
-        // Register Button
         Button(
-            onClick = { /* Handle registration logic */ },
+            onClick = {
+                if (firstName.isBlank() || lastName.isBlank() || email.isBlank()) {
+                    Toast.makeText(context, "Registration unsuccessful. Please enter all data.", Toast.LENGTH_SHORT).show()
+                } else {
+                    saveUserData(context, firstName, lastName, email)
+                    Toast.makeText(context, "Registration successful!", Toast.LENGTH_SHORT).show()
+                    navController.navigate(Home.route)
+                }
+            },
             modifier = Modifier
                 .fillMaxWidth()
-
+                .padding(top = 16.dp)
         ) {
-            Text("Register",
-                color = MaterialTheme.colorScheme.onSecondary,
-                style = MaterialTheme.typography.titleMedium)
+            Text("Register")
         }
+    }
+}
+
+fun saveUserData(context: Context, firstName: String, lastName: String, email: String) {
+    val sharedPref = context.getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+    with(sharedPref.edit()) {
+        putString("firstName", firstName)
+        putString("lastName", lastName)
+        putString("email", email)
+        apply()
     }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun OnboardingScreenPreview() {
-    OnboardingScreen()
+    val navController = rememberNavController() // Create a mock NavHostController for preview
+    OnboardingScreen(navController = navController)
 }
