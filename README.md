@@ -1,10 +1,12 @@
 # Little Lemon Food Ordering App
 
-This project is the final capstone for the **Meta Android Developer Professional Certificate**. The app provides a food ordering interface for the **Little Lemon** restaurant, allowing users to browse the restaurant's menu, place orders, and manage their profiles.
+The app provides a food ordering interface for the **Little Lemon** restaurant, allowing users to browse the restaurant's menu, place orders, and manage their profiles.
 
 ## Preview
 
-![Demonstration](https://user-images.githubusercontent.com/93353925/227747468-3e923704-873f-4a06-8bbb-8fad77580034.gif)
+![home_on-phone_white-sides](https://github.com/user-attachments/assets/19947c78-1a2c-4919-890d-2880956bfaa5)
+![onboarding](https://github.com/user-attachments/assets/dc1bf0c0-359a-4b5a-8e6c-4fbe18d05a8a)
+![profile](https://github.com/user-attachments/assets/bb35d571-ab6f-446a-80cc-ac40f470c6a5)
 
 ## Features
 
@@ -19,7 +21,7 @@ This project is the final capstone for the **Meta Android Developer Professional
 
 The app's Home screen is based on the following wireframe:
 
-<img width="500" alt="Wireframe" src="https://user-images.githubusercontent.com/93353925/227747759-133a6613-06cb-4797-95f1-37a668c8be67.png">
+![Wireframe](https://github.com/user-attachments/assets/a447fb12-eaa3-4a7c-ba11-ed3269181c8f)
 
 ## Screens Overview
 
